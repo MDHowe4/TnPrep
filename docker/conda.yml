@@ -1,4 +1,4 @@
-name: TnPrep
+name: tnprep-init
 channels:
   - defaults
   - bioconda
@@ -9,3 +9,4 @@ dependencies:
   - bowtie2=2.5.1
   - cutadapt=4.1
   - multiqc=1.14
+  - biopython=1.81

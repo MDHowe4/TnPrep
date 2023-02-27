@@ -1,11 +1,11 @@
 process PYCOUNT {
   tag "Counting Tn reads for $sam_in"
-  publishDir 'outdir/counts', mode: 'copy'
+  publishDir "${params.output}/final_count_wigfiles", mode: 'copy'
   debug true
 
   input:
   path sam_in
-  path genome_file
+  path genome
 
 
   output:
@@ -13,7 +13,7 @@ process PYCOUNT {
 
   script:
   """
-  count.py "$sam_in" "$genome_file"
+  count.py "$sam_in" "$genome"
   """
 }
 

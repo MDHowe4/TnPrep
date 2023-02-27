@@ -1,8 +1,8 @@
 
 process FASTQC {
   tag "FASTQC on $reads_ch"
-  debug true
-  publishDir 'outdir/fastqc_out', mode: 'copy'
+  conda 'bioconda::fastqc=0.11.9'
+  publishDir "${params.output}/fastqc", mode: 'copy'
 
   input:
   path reads_ch

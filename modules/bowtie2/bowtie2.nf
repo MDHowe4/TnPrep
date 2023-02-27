@@ -1,26 +1,28 @@
 
 process INDEX {
-  tag "Creating index for ${params.genome_file}"
-  publishDir 'outdir/bowtie2_out/index', mode: 'copy'
-  debug true
+  tag "Creating index for ${params.genome}"
+  conda 'bioconda::bowtie2=2.5.1'
+  publishDir "${params.output}/bowtie2/index", mode: 'copy'
+
 
   input:
-  path genome_file
+  path genome
 
   output:
   path 'indices*'
 
   script:
   """
-  bowtie2-build --quiet -f ${params.genome_file} indices
+  bowtie2-build --quiet -f ${params.genome} indices
   
   """
 }
 
 process ALIGN {
   tag "Aligning reads for $cutadapt_final"
-  publishDir 'outdir/bowtie2_out/SAM_files', mode: 'copy'
-  debug true
+  conda 'bioconda::bowtie2=2.5.1'
+  publishDir "${params.output}/bowtie2_out/SAM_files", mode: 'copy'
+
 
   input:
   path index

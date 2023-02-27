@@ -1,0 +1,24 @@
+nextflow run TnPrep.nf
+
+
+zcat Control_MAC_01_S27_L001_R1_001.fastq.gz | less -S
+
+chmod +rwx
+
+
+docker run -it tnprep-init bash
+
+nextflow run TnPrep.nf -with-report test_nodocker.html
+nextflow run TnPrep.nf -with-docker tnprep-init -with-report test_docker.html
+
+
+
+nextflow run <pipeline name> -with-report [file name]
+
+
+
+
+
+nextflow run TnPrep.nf --input /home/moondoggie/Projects/TnPrep/Test_files --genome /home/moondoggie/Projects/TnPrep/Genome_file/H37Rv_Reference_Genome_NC_000962.3.fasta
+
+nextflow run TnPrep.nf -with-docker tnprep-init --input /home/moondoggie/Projects/TnPrep/Test_files --genome /home/moondoggie/Projects/TnPrep/Genome_file/H37Rv_Reference_Genome_NC_000962.3.fasta
