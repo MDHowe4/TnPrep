@@ -23,7 +23,7 @@ nextflow run TnPrep.nf --input /home/moondoggie/Projects/TnPrep/Test_files --gen
 
 nextflow run TnPrep.nf -with-docker tnprep-init --input /home/moondoggie/Projects/TnPrep/Test_files --genome /home/moondoggie/Projects/TnPrep/Genome_file/H37Rv_Reference_Genome_NC_000962.3.fasta
 
-nextflow run MDHowe4/TnPrep -profile docker --input /home/moondoggie/Projects/TnPrep/Test_files --genome /home/moondoggie/Projects/TnPrep/Genome_file/H37Rv_Reference_Genome_NC_000962.3.fasta --output /home/moondoggie/Projects/test
+nextflow run MDHowe4/TnPrep -profile docker --input /home/moondoggie/Projects/TnPrep/Test_files --genome /home/moondoggie/Projects/TnPrep/Genome_file/H37Rv_Reference_Genome_NC_000962.3.fasta --output /home/moondoggie/Projects/test -with-report withcontainer.html
 
 docker build -t tnprep/
 
