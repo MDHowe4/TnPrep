@@ -1,5 +1,5 @@
 .nextflow*
 work/*
-Scratch.txt
+.txt*
 outdir/*
 Test_files/*
