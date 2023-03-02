@@ -27,3 +27,6 @@ nextflow run MDHowe4/TnPrep --input /home/moondoggie/Projects/TnPrep/Test_files 
 
 
 docker build -t tnprep/
+
+
+docker pull argonaut1/tnprep:v0.1.0
