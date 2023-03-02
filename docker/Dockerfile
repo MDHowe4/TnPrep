@@ -5,7 +5,7 @@ LABEL image.author.email "howex118@umn.edu"
 
 COPY environment.yml .
 RUN \
-    conda env update -n root -f conda.yml \
+    conda env update -n root -f environment.yml \
     && conda clean -a
 
 RUN apt-get install -y procps
