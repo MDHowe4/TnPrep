@@ -13,7 +13,7 @@ include { PYCOUNT } from './modules/countPy/countPy.nf'
 def helpMessage() {
   log.info"""
   Usage:
-  nextflow run FredHutch/workflow-template-nextflow <ARGUMENTS>
+ 
 
   Required Arguments:
   Input Data:
