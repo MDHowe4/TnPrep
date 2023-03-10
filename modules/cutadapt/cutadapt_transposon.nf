@@ -10,7 +10,7 @@ process CUTADAPT_TN {
 
   output:
   path "tntrimmed_${reads_ch}"
-  path "${reads_ch}_stats_transposontrimming.txt"
+  path "${reads_ch.baseName}_stats_transposontrimming.txt"
  // path "${reads_ch}_stats_transposontrimming.txt"
 
   script:
@@ -31,7 +31,7 @@ process CUTADAPT_ADAPTER {
 
   output:
   path "final_${cutadapt_tn}"
-  path "${cutadapt_tn}_stats_adaptertrimming.txt"
+  path "${cutadapt_tn.baseName}_stats_adaptertrimming.txt"
 
   script:
   """
