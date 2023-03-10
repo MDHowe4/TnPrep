@@ -1,7 +1,7 @@
 
 process CUTADAPT_TN {
   tag "CUTADAPT Tn trimming on $reads_ch"
-  conda 'bioconda::cutadapt=4.1'
+
   publishDir "${params.output}/trimmed/CA_tranposon_trimmed", mode: 'copy'
 
 
@@ -10,7 +10,7 @@ process CUTADAPT_TN {
 
   output:
   path "tntrimmed_${reads_ch}"
-  path "${reads_ch}_stats.txt"
+  path "${reads_ch}_stats_transposontrimming.txt"
  // path "${reads_ch}_stats_transposontrimming.txt"
 
   script:
@@ -21,7 +21,7 @@ process CUTADAPT_TN {
 
 process CUTADAPT_ADAPTER {
   tag "CUTADAPT adapter trimming on $cutadapt_tn"
-  conda 'bioconda::cutadapt=4.1'
+ 
   publishDir "${params.output}/trimmed/CA_adapter_trimmed", mode: 'copy'
 
 
