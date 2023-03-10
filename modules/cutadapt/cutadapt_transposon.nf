@@ -15,7 +15,13 @@ process CUTADAPT_TN {
 
   script:
   """
-  cutadapt_tspn.sh "$reads_ch"
+  cutadapt \
+    -g CCGGGGACTTATCAGCCAACCTGT \
+    --discard-untrimmed \
+    --cores=10 \
+    -o tntrimmed_${reads_ch} \
+    ${reads_ch} \
+    > ${reads_ch.baseName}_stats_transposontrimming.txt
   """
 }
 

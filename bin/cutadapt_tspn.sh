@@ -6,4 +6,4 @@ cutadapt \
     --cores=10 \
     -o tntrimmed_${reads} \
     ${reads} \
-    > ${reads.baseName}_stats_transposontrimming.txt
+    > ${reads}_stats_transposontrimming.txt
