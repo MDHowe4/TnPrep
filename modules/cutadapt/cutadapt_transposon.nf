@@ -2,7 +2,7 @@
 process CUTADAPT_TN {
   tag "CUTADAPT Tn trimming on $reads_ch"
 
-  publishDir "${params.output}/trimmed/CA_tranposon_trimmed", mode: 'copy'
+  publishDir "${params.output}/trimmed/CA_tranposon_trimmed", mode: 'copy', pattern: "*.txt"
 
 
   input:
@@ -28,7 +28,7 @@ process CUTADAPT_TN {
 process CUTADAPT_ADAPTER {
   tag "CUTADAPT adapter trimming on $cutadapt_tn"
  
-  publishDir "${params.output}/trimmed/CA_adapter_trimmed", mode: 'copy'
+  publishDir "${params.output}/trimmed/CA_adapter_trimmed", mode: 'copy', pattern: "*.txt"
 
 
   input:
