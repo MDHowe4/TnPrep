@@ -9,8 +9,8 @@ process CUTADAPT_TN {
   path reads_ch
 
   output:
-  path "tntrimmed_${reads_ch}"
-  path "${reads_ch.baseName}_stats_transposontrimming.txt"
+  path "trim_${reads_ch}"
+  path "${reads_ch.getBaseName(2)}_stats_transposontrimming.txt"
  // path "${reads_ch}_stats_transposontrimming.txt"
 
   script:
@@ -18,10 +18,10 @@ process CUTADAPT_TN {
   cutadapt \
     -g CCGGGGACTTATCAGCCAACCTGT \
     --discard-untrimmed \
-    --cores=10 \
-    -o tntrimmed_${reads_ch} \
+    --cores=4 \
+    -o trim_${reads_ch} \
     ${reads_ch} \
-    > ${reads_ch.baseName}_stats_transposontrimming.txt
+    > ${reads_ch.getBaseName(2)}_stats_transposontrimming.txt
   """
 }
 
@@ -36,12 +36,19 @@ process CUTADAPT_ADAPTER {
   path cutadapt_txt
 
   output:
-  path "final_${cutadapt_tn}"
-  path "${cutadapt_tn.baseName}_stats_adaptertrimming.txt"
+  path "final${cutadapt_tn}"
+  path "${cutadapt_tn.getBaseName(2)}_stats_adaptertrimming.txt"
 
   script:
   """
-  cutadapt_adapter.sh "$cutadapt_tn"
+  cutadapt \
+    -a GATCCCACTAGTGTCGACACCAGTCTC \
+    --minimum-length=18 \
+    --cores=4 \
+    -o final${cutadapt_tn} \
+    ${cutadapt_tn} \
+    > ${cutadapt_tn.getBaseName(2)}_stats_adaptertrimming.txt
+
   """
 }
 

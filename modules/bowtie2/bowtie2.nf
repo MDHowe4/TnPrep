@@ -20,7 +20,7 @@ process INDEX {
 
 process ALIGN {
   tag "Aligning reads for $cutadapt_final"
-  conda 'bioconda::bowtie2=2.5.1'
+
   publishDir "${params.output}/bowtie2_out/SAM_files", mode: 'copy'
 
 
@@ -30,7 +30,7 @@ process ALIGN {
   path cutadapt_txt
 
   output:
-  path "${cutadapt_final}_bowtie2.sam"
+  path "${cutadapt_final.getBaseName(2)}.sam"
 
   script:
   """
@@ -39,7 +39,7 @@ bowtie2 \
     -q \
     -sam \
     -x indices $cutadapt_final \
-    -S "${cutadapt_final}_bowtie2.sam"
+    -S "${cutadapt_final.getBaseName(2)}.sam"
   
   """
 }
