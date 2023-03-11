@@ -1,7 +1,6 @@
 
 process INDEX {
   tag "Creating index for ${params.genome}"
-  conda 'bioconda::bowtie2=2.5.1'
   publishDir "${params.output}/bowtie2/index", mode: 'copy'
 
 
@@ -20,7 +19,6 @@ process INDEX {
 
 process ALIGN {
   tag "Aligning reads for $cutadapt_final"
-
   publishDir "${params.output}/bowtie2/SAM_files", mode: 'copy'
 
 
@@ -31,7 +29,7 @@ process ALIGN {
 
   output:
   path "${cutadapt_final.getBaseName(2)}.sam"
-
+  path "${cutadapt_final.getBaseName(2)}_alignment_summary.log" , emit: alignment_logs
   script:
   """
 
@@ -39,7 +37,9 @@ bowtie2 \
     -q \
     -sam \
     -x indices $cutadapt_final \
-    -S "${cutadapt_final.getBaseName(2)}.sam"
+    -S "${cutadapt_final.getBaseName(2)}.sam" \
+    2> "${cutadapt_final.getBaseName(2)}_alignment_summary.log"
+
   
   """
 }

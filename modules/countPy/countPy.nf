@@ -5,6 +5,7 @@ process PYCOUNT {
 
   input:
   path sam_in
+  path log_in
   path genome
 
 

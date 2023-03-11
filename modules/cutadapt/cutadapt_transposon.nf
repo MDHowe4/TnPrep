@@ -1,7 +1,6 @@
 
 process CUTADAPT_TN {
   tag "CUTADAPT Tn trimming on $reads_ch"
-
   publishDir "${params.output}/trimmed/CA_tranposon_trimmed", mode: 'copy', pattern: "*.txt"
 
 
@@ -10,7 +9,7 @@ process CUTADAPT_TN {
 
   output:
   path "trim_${reads_ch}"
-  path "${reads_ch.getBaseName(2)}_stats_transposontrimming.txt"
+  path "${reads_ch.getBaseName(2)}_stats_transposontrimming.txt" , emit: cutadapt_TN_logs
  // path "${reads_ch}_stats_transposontrimming.txt"
 
   script:
@@ -27,7 +26,6 @@ process CUTADAPT_TN {
 
 process CUTADAPT_ADAPTER {
   tag "CUTADAPT adapter trimming on $cutadapt_tn"
- 
   publishDir "${params.output}/trimmed/CA_adapter_trimmed", mode: 'copy', pattern: "*.txt"
 
 
@@ -37,7 +35,7 @@ process CUTADAPT_ADAPTER {
 
   output:
   path "final${cutadapt_tn}"
-  path "${cutadapt_tn.getBaseName(2)}_stats_adaptertrimming.txt"
+  path "${cutadapt_tn.getBaseName(2)}_stats_adaptertrimming.txt", emit: cutadapter_logs
 
   script:
   """
