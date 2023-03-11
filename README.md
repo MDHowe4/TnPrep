@@ -1,6 +1,6 @@
 # TnPrep
 ## Description
-Nextflow pipeline for QC, mapping and counting of Himar1 mariner transposon insertion read sequencing data (Tn-seq) to positions within a supplied bacterial reference genome.
+Tn-seq Nextflow pipeline for QC, mapping and counting of Himar1 mariner transposon insertion read sequencing data to positions within a supplied bacterial reference genome.
 
 The output of this pipeline is a wig file containing insertion counts mapped to all TA sites found within the reference genome. This file is compatible with TRANSIT or other tools for downstream data analysis.
 
