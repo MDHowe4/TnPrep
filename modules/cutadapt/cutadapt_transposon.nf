@@ -9,7 +9,7 @@ process CUTADAPT_TN {
 
   output:
   path "trim_${reads_ch}"
-  path "${reads_ch.getBaseName(2)}_stats_transposontrimming.txt" , emit: cutadapt_TN_logs
+  path "TNtrimmed${reads_ch.getBaseName(2)}_stats_transposontrimming.txt" , emit: cutadapt_TN_logs
  // path "${reads_ch}_stats_transposontrimming.txt"
 
   script:
@@ -20,7 +20,7 @@ process CUTADAPT_TN {
     --cores=4 \
     -o trim_${reads_ch} \
     ${reads_ch} \
-    > ${reads_ch.getBaseName(2)}_stats_transposontrimming.txt
+    > TNtrimmed${reads_ch.getBaseName(2)}_stats_transposontrimming.txt
   """
 }
 
@@ -35,7 +35,7 @@ process CUTADAPT_ADAPTER {
 
   output:
   path "final${cutadapt_tn}"
-  path "${cutadapt_tn.getBaseName(2)}_stats_adaptertrimming.txt", emit: cutadapter_logs
+  path "adapter${cutadapt_tn.getBaseName(2)}_stats_adaptertrimming.txt", emit: cutadapter_logs
 
   script:
   """
@@ -45,7 +45,7 @@ process CUTADAPT_ADAPTER {
     --cores=4 \
     -o final${cutadapt_tn} \
     ${cutadapt_tn} \
-    > ${cutadapt_tn.getBaseName(2)}_stats_adaptertrimming.txt
+    > adapter${cutadapt_tn.getBaseName(2)}_stats_adaptertrimming.txt
 
   """
 }

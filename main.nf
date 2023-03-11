@@ -8,6 +8,7 @@ include { CUTADAPT_ADAPTER } from './modules/cutadapt/cutadapt_transposon.nf'
 include { INDEX } from './modules/bowtie2/bowtie2.nf'
 include { ALIGN } from './modules/bowtie2/bowtie2.nf'
 include { PYCOUNT } from './modules/countPy/countPy.nf'
+include { MULTIQC } from './modules/multiqc/multiqc.nf'
 
 // Function which prints help message text
 def helpMessage() {
@@ -62,19 +63,38 @@ workflow {
     reads_ch = channel.fromPath( input_files, checkIfExists: true )
   }
 
+  ch_fastqc_logs = Channel.empty()
+  ch_cutadapt_TN_logs = Channel.empty()
+  ch_cutadapter_logs = Channel.empty()
+  ch_alignment_logs = Channel.empty()
+
+
+
+
   //reads_ch.view()
   FASTQC( reads_ch )
+  ch_fastqc_logs = FASTQC.out.fastqc_logs
   CUTADAPT_TN( reads_ch )
+  ch_cutadapt_TN_logs = CUTADAPT_TN.out.cutadapt_TN_logs
   CUTADAPT_ADAPTER( CUTADAPT_TN.out )
+  ch_cutadapter_logs = CUTADAPT_ADAPTER.out.cutadapter_logs
+
   INDEX( params.genome )
   ALIGN( 
     INDEX.out, 
     CUTADAPT_ADAPTER.out 
   )
+  ch_alignment_logs = ALIGN.out.alignment_logs
   PYCOUNT(
     ALIGN.out,
     params.genome
     )
+  MULTIQC(ch_fastqc_logs.collect().ifEmpty([]),
+          ch_cutadapt_TN_logs.collect().ifEmpty([]),
+          ch_cutadapter_logs.collect().ifEmpty([]),
+          ch_alignment_logs.collect().ifEmpty([]))
+
+
 }
 
 workflow.onComplete {
