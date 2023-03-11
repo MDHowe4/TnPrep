@@ -21,7 +21,7 @@ process INDEX {
 process ALIGN {
   tag "Aligning reads for $cutadapt_final"
 
-  publishDir "${params.output}/bowtie2_out/SAM_files", mode: 'copy'
+  publishDir "${params.output}/bowtie2/SAM_files", mode: 'copy'
 
 
   input:

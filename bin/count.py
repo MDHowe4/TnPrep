@@ -6,7 +6,7 @@ import sys
 # Declare Nextflow input variables using the sys package.
 ref_genome_bowtie_index = sys.argv[1]  # Bowtie index name
 ref_genome_fasta = sys.argv[2] # Reference genome FASTA file
-print(ref_genome_bowtie_index)
+
 # Function that creates a list of TA sites based upon the reference genome FASTA file supplied
 
 def create_TA_sites(fasta_file):
@@ -33,10 +33,8 @@ def count(SAM_file):
     TA_dict = dict.fromkeys(create_TA_sites(ref_genome_fasta), 0)
     # Set filename to Bowtie sam file index name
     fname = SAM_file
-    print(fname)
     # Reduce output file name length
     save_name = (fname[10:-3] + "wig")
-    print(save_name)
     # Open file with the correct save name for writing and create header name. Write header name to top of .wig file. Create space for writing of counts.
     save_file = open(save_name, "w")
     header = ("#", '\n', "variableStep chrom=" + SAM_file, '\n')

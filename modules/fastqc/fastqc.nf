@@ -12,7 +12,7 @@ process FASTQC {
 
   script:
   """
-  mkdir fastqc_${reads.getBaseName(2)}_logs
-  fastqc -o fastqc_${reads.getBaseName(2)}_logs -q ${reads}
+  mkdir fastqc_${reads_ch.getBaseName(2)}_logs
+  fastqc -o fastqc_${reads_ch.getBaseName(2)}_logs -q ${reads_ch}
   """
 }
