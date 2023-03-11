@@ -8,10 +8,11 @@ process FASTQC {
   path reads_ch
 
   output:
-  path "fastqc_${reads_ch}_logs" 
+  path "fastqc_${reads_ch.getBaseName(2)}_logs" 
 
   script:
   """
-  fastqc.sh "$reads_ch"
+  mkdir fastqc_${reads.getBaseName(2)}_logs
+  fastqc -o fastqc_${reads.getBaseName(2)}_logs -q ${reads}
   """
 }
