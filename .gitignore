@@ -3,3 +3,4 @@ work/*
 .txt*
 outdir/*
 Test_files/*
+runInfo/*
