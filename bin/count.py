@@ -80,7 +80,7 @@ def count(SAM_file):
         ordered_values.append(TA_dict[j])
         save_file.write(str(TA_dict[j]))
         save_file.write(newline)
-    print("Finished counting " + fname)
+    # print("Finished counting " + fname)
     save_file.close()
 
 count(ref_genome_bowtie_index)
