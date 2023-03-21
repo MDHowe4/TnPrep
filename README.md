@@ -2,7 +2,7 @@
 ## Description
 TnPrep is a Tn-seq Nextflow pipeline for QC, mapping and counting of Himar1 mariner transposon insertion read sequencing data to positions within a supplied bacterial reference genome following the schema outlined in .
 
-The output of this pipeline is a `.wig` file containing insertion counts mapped to all TA sites found within the reference genome and QC information in the form of a MultiQC report. The `.wig` file is compatible with TRANSIT or other tools for downstream data analysis.
+The output of this pipeline is individual count matrices in `.wig` format containing insertion counts mapped to all TA sites found within the reference genome and QC information in the form of a MultiQC report. This `.wig` count file is compatible with TRANSIT or other tools for downstream Tn-seq data processing and analysis.
 
 
 ## Requirements
@@ -39,9 +39,12 @@ nextflow run MDHowe4/TnPrep -profile docker/singularity/podman \
 
 `--output`: Path to the output file directory
 
-All files in the input file directory should be in the same file format for compatibility with this pipeline. 
+**NOTE:** All files in the input file directory should be in the same file format for compatibility with this pipeline. 
 
+**NOTE:** The first time you execute this pipeline it may take some time grab TnPrep from the GitHub repository and download the necessary container image comprising the dependecies needed to successfully run TnPrep.
 
+## Pipeline Schema
+tba
 
 ## Software
 Program | Version
