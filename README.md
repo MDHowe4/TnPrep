@@ -8,7 +8,7 @@ The output of this pipeline is individual count matrices in `.wig` format contai
 ## Requirements
 **1.** A POSIX compatible system (Linux, OS X, WSL (tested on Ubuntu), etc)
 
-**2.** [`Java 11 or later (up to 18)`](https://www.oracle.com/java/technologies/downloads/#jdk17-linux)
+**2.**[`Java 11 or later (up to 18)`](https://www.oracle.com/java/technologies/downloads/#jdk17-linux)
 
 **3.** Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) ( `>=22.10.7` ). Older versions may work, but are untested. ( [`this tutorial`](https://nextflow.io/blog/2021/setup-nextflow-on-windows.html) can be helpful to setup an environment to run Nextflow in Windows, just skip dev tool installations )
 
